@@ -1,0 +1,22 @@
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;line-height:1.7;color:#1f2937;background:#f8fafc}
+a{color:#2563eb;text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+header.site{background:#fff;border-bottom:1px solid #e5e7eb}
+header.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.logo{font-size:24px;font-weight:700;color:#111827}
+nav a{margin-left:16px;color:#374151;font-size:15px}
+main.content{padding:28px 16px;min-height:60vh}
+h1{font-size:30px;line-height:1.3}
+h2{font-size:22px;margin-top:32px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:20px;margin:16px 0}
+input,textarea{width:100%;padding:12px;font-size:16px;border:1px solid #d1d5db;border-radius:8px}
+button{background:#2563eb;color:#fff;border:0;border-radius:8px;padding:12px 22px;font-size:16px;cursor:pointer}
+button:disabled{opacity:.6}
+.error{color:#dc2626}
+.ok{background:#ecfdf5;border:1px solid #a7f3d0;padding:12px;border-radius:8px;word-break:break-all}
+.ad{margin:24px 0;text-align:center;min-height:90px}
+footer.site{background:#111827;color:#d1d5db;padding:24px 0;font-size:14px;margin-top:40px}
+footer.site a{color:#e5e7eb;margin-right:14px}
+.small{font-size:14px;color:#6b7280}
