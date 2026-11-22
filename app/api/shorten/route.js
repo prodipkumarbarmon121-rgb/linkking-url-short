@@ -15,6 +15,27 @@ const BLOCKED_DOMAINS = [
   'is.gd',
   'cutt.ly',
   'rebrand.ly',
+  'pornhub.com',
+  'xvideos.com',
+  'xnxx.com',
+  'xhamster.com',
+  'redtube.com',
+  'youporn.com',
+  'brazzers.com',
+  'chaturbate.com',
+  'stripchat.com',
+];
+
+const BLOCKED_KEYWORDS = [
+  'porn',
+  'xxx',
+  'hentai',
+  'nsfw',
+  'xvideos',
+  'xnxx',
+  'xhamster',
+  'camgirl',
+  'escort',
 ];
 
 const MAX_PER_HOUR = 20;
@@ -43,7 +64,8 @@ function randomSlug() {
 
 function isBlocked(hostname) {
   const h = hostname.toLowerCase();
-  return BLOCKED_DOMAINS.some((d) => h === d || h.endsWith('.' + d));
+  if (BLOCKED_DOMAINS.some((d) => h === d || h.endsWith('.' + d))) return true;
+  return BLOCKED_KEYWORDS.some((k) => h.includes(k));
 }
 
 export async function POST(req) {
@@ -114,4 +136,4 @@ export async function POST(req) {
     }
   }
   return NextResponse.json({ error: 'Could not create the link. Please try again.' }, { status: 500 });
-    }
+                                                                      }
