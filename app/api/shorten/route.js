@@ -68,12 +68,42 @@ function isBlocked(hostname) {
   return BLOCKED_KEYWORDS.some((k) => h.includes(k));
 }
 
+async function verifyTurnstile(token, ip) {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true;
+  if (!token || typeof token !== 'string') return false;
+  try {
+    const form = new URLSearchParams();
+    form.append('secret', secret);
+    form.append('response', token);
+    if (ip && ip !== 'unknown') form.append('remoteip', ip);
+    const res = await fetch(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      { method: 'POST', body: form }
+    );
+    const data = await res.json();
+    return data.success === true;
+  } catch (e) {
+    return false;
+  }
+}
+
 export async function POST(req) {
   let body;
   try {
     body = await req.json();
   } catch (e) {
     return NextResponse.json({ error: 'Invalid request.' }, { status: 400 });
+  }
+
+  const ip = getIp(req);
+
+  const human = await verifyTurnstile(body.token, ip);
+  if (!human) {
+    return NextResponse.json(
+      { error: 'Verification failed. Please try again.' },
+      { status: 400 }
+    );
   }
 
   const raw = typeof body.url === 'string' ? body.url.trim() : '';
@@ -107,7 +137,7 @@ export async function POST(req) {
     { auth: { persistSession: false } }
   );
 
-  const ipHash = hashIp(getIp(req));
+  const ipHash = hashIp(ip);
   const hourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
   const dayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
@@ -136,4 +166,4 @@ export async function POST(req) {
     }
   }
   return NextResponse.json({ error: 'Could not create the link. Please try again.' }, { status: 500 });
-                                                                      }
+      }
