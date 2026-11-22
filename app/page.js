@@ -1,19 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { SITE } from '../lib/site';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
-
-function randomSlug() {
-  const chars = 'abcdefghijkmnpqrstuvwxyz23456789';
-  let s = '';
-  for (let i = 0; i < 6; i++) s += chars[Math.floor(Math.random() * chars.length)];
-  return s;
-}
 
 export default function Home() {
   const [url, setUrl] = useState('');
@@ -31,16 +18,22 @@ export default function Home() {
       return;
     }
     setLoading(true);
-    const slug = randomSlug();
-    const { error } = await supabase
-      .from('links')
-      .insert({ slug, original_url: url.trim() });
-    setLoading(false);
-    if (error) {
-      setError('Something went wrong: ' + error.message);
-      return;
+    try {
+      const res = await fetch('/api/shorten', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: url.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || 'Something went wrong. Please try again.');
+      } else {
+        setShort(window.location.origin + '/' + data.slug);
+      }
+    } catch (e) {
+      setError('Network error. Please try again.');
     }
-    setShort(window.location.origin + '/' + slug);
+    setLoading(false);
   }
 
   async function copyLink() {
