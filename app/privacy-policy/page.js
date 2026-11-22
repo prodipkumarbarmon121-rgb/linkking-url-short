@@ -10,7 +10,7 @@ export default function Privacy() {
   return (
     <>
       <h1>Privacy Policy</h1>
-      <p className="small">Last updated:  November 22, 2026</p>
+      <p className="small">Last updated: November 22, 2026</p>
       <p>
         This Privacy Policy explains how {SITE.name} ({SITE.url}) collects,
         uses and protects information when you use our website and URL
@@ -21,9 +21,14 @@ export default function Privacy() {
       <p>
         When you shorten a link, we store the original URL and the short code
         created for it. When you visit the site or use a short link, we may
-        automatically collect technical information such as IP address, browser
-        type, device type, pages visited and referring pages. We do not require
-        you to create an account or give personal details to use the service.
+        automatically collect technical information such as browser type,
+        device type, pages visited and referring pages. We do not require you
+        to create an account or give personal details to use the service.
+      </p>
+      <p>
+        To limit spam and abuse, we use your IP address to count how many
+        links are created. We store only a one-way hashed version of your IP
+        address, not the address itself.
       </p>
 
       <h2>How We Use Information</h2>
@@ -50,11 +55,21 @@ export default function Privacy() {
         visiting Google Ads Settings at https://adssettings.google.com.
       </p>
 
+      <h2>Security Checks</h2>
+      <p>
+        We use Cloudflare Turnstile to check that link requests come from real
+        people and not automated bots. Turnstile may process technical
+        information such as your IP address and browser details to make this
+        decision. Cloudflare&apos;s handling of this data is described in its
+        own privacy policy.
+      </p>
+
       <h2>Third-Party Services</h2>
       <p>
         We use third-party services to run the website, including Vercel
-        (hosting), Supabase (database) and Google (advertising and analytics).
-        These providers have their own privacy policies.
+        (hosting), Supabase (database), Cloudflare (bot protection) and Google
+        (advertising and analytics). These providers have their own privacy
+        policies.
       </p>
 
       <h2>Data Retention</h2>
