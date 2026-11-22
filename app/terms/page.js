@@ -10,7 +10,7 @@ export default function Terms() {
   return (
     <>
       <h1>Terms of Service</h1>
-      <p className="small">Last updated: WRITE DATE HERE</p>
+      <p className="small">Last updated: November 22, 2026</p>
       <p>
         By using {SITE.name}, you agree to these terms. If you do not agree,
         please do not use the service.
