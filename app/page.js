@@ -1,6 +1,8 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { SITE } from '../lib/site';
+
+const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 export default function Home() {
   const [url, setUrl] = useState('');
@@ -8,6 +10,32 @@ export default function Home() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [token, setToken] = useState('');
+  const widgetRef = useRef(null);
+  const widgetId = useRef(null);
+
+  useEffect(() => {
+    if (!SITE_KEY) return;
+    function renderWidget() {
+      if (!window.turnstile || !widgetRef.current || widgetId.current !== null) return;
+      widgetId.current = window.turnstile.render(widgetRef.current, {
+        sitekey: SITE_KEY,
+        callback: (t) => setToken(t),
+        'expired-callback': () => setToken(''),
+        'error-callback': () => setToken(''),
+      });
+    }
+    if (window.turnstile) {
+      renderWidget();
+      return;
+    }
+    const s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    s.async = true;
+    s.defer = true;
+    s.onload = renderWidget;
+    document.head.appendChild(s);
+  }, []);
 
   async function handleSubmit() {
     setError('');
@@ -17,12 +45,16 @@ export default function Home() {
       setError('Please enter a valid link starting with http:// or https://');
       return;
     }
+    if (SITE_KEY && !token) {
+      setError('Please complete the verification check below.');
+      return;
+    }
     setLoading(true);
     try {
       const res = await fetch('/api/shorten', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: url.trim() }),
+        body: JSON.stringify({ url: url.trim(), token }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -33,6 +65,10 @@ export default function Home() {
     } catch (e) {
       setError('Network error. Please try again.');
     }
+    if (window.turnstile && widgetId.current !== null) {
+      window.turnstile.reset(widgetId.current);
+    }
+    setToken('');
     setLoading(false);
   }
 
@@ -60,6 +96,7 @@ export default function Home() {
           placeholder="https://example.com/very-long-link"
           aria-label="Long URL"
         />
+        <div ref={widgetRef} style={{ marginTop: 12, minHeight: 65 }} />
         <p>
           <button onClick={handleSubmit} disabled={loading}>
             {loading ? 'Please wait...' : 'Shorten'}
@@ -119,4 +156,4 @@ export default function Home() {
       </section>
     </>
   );
-}
+  }
