@@ -15,10 +15,19 @@ export default async function SlugPage({ params }) {
 
   const { data } = await supabase
     .from('links')
-    .select('original_url')
+    .select('original_url, disabled')
     .eq('slug', params.slug)
-    .single();
+    .maybeSingle();
 
-  if (!data) notFound();
-  redirect(data.original_url);
+  if (!data || data.disabled) notFound();
+
+  let target;
+  try {
+    target = new URL(data.original_url);
+  } catch (e) {
+    notFound();
+  }
+  if (!['http:', 'https:'].includes(target.protocol)) notFound();
+
+  redirect(target.href);
 }
