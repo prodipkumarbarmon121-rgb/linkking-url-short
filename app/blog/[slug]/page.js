@@ -1,0 +1,62 @@
+import { notFound } from 'next/navigation';
+import { SITE } from '../../../lib/site';
+import { POSTS, getPost } from '../../../lib/posts';
+
+function isDraft(post) {
+  return post.content.some((c) => c.includes('WRITE HERE'));
+}
+
+export function generateStaticParams() {
+  return POSTS.filter((p) => !isDraft(p)).map((p) => ({ slug: p.slug }));
+}
+
+export function generateMetadata({ params }) {
+  const post = getPost(params.slug);
+  if (!post || isDraft(post)) return {};
+  return {
+    title: post.title,
+    description: post.description,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      type: 'article',
+      title: post.title,
+      description: post.description,
+      url: `${SITE.url}/blog/${post.slug}`,
+      publishedTime: post.date,
+    },
+  };
+}
+
+export default function Post({ params }) {
+  const post = getPost(params.slug);
+  if (!post || isDraft(post)) notFound();
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    mainEntityOfPage: `${SITE.url}/blog/${post.slug}`,
+    author: { '@type': 'Organization', name: SITE.name },
+    publisher: { '@type': 'Organization', name: SITE.name },
+  };
+
+  return (
+    <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <p className="small">
+        <a href="/blog">&larr; Back to Blog</a>
+      </p>
+      <h1>{post.title}</h1>
+      <p className="small">{post.date}</p>
+      {post.content.map((para, i) => (
+        <p key={i}>{para}</p>
+      ))}
+    </article>
+  );
+      }
