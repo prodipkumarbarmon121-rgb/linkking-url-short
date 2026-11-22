@@ -10,7 +10,7 @@ export default function Privacy() {
   return (
     <>
       <h1>Privacy Policy</h1>
-      <p className="small">Last updated: 22/11/2026</p>
+      <p className="small">Last updated:  November 22, 2026</p>
       <p>
         This Privacy Policy explains how {SITE.name} ({SITE.url}) collects,
         uses and protects information when you use our website and URL
