@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import { SITE } from '../lib/site';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -19,10 +20,12 @@ export default function Home() {
   const [short, setShort] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   async function handleSubmit() {
     setError('');
     setShort('');
+    setCopied(false);
     if (!/^https?:\/\/.+\..+/.test(url.trim())) {
       setError('Please enter a valid link starting with http:// or https://');
       return;
@@ -38,6 +41,15 @@ export default function Home() {
       return;
     }
     setShort(window.location.origin + '/' + slug);
+  }
+
+  async function copyLink() {
+    try {
+      await navigator.clipboard.writeText(short);
+      setCopied(true);
+    } catch (e) {
+      setCopied(false);
+    }
   }
 
   return (
@@ -64,29 +76,54 @@ export default function Home() {
         {short && (
           <div className="ok">
             Your short link: <a href={short}>{short}</a>
+            <p>
+              <button onClick={copyLink}>{copied ? 'Copied!' : 'Copy link'}</button>
+            </p>
           </div>
         )}
       </div>
 
       <section>
-        <h2>How Linkking works</h2>
+        <h2>How {SITE.name} works</h2>
         <p>
-          WRITE HERE: 3 to 4 sentences explaining how to use Linkking
-          (paste link, click Shorten, copy and share).
+          Using {SITE.name} takes just a few seconds. Paste your long web
+          address into the box above and press the Shorten button. You will
+          instantly get a short link. Copy it and share it anywhere you like,
+          in a message, an email or a social media post. No signup is needed.
         </p>
 
         <h2>Why use a short link</h2>
         <p>
-          WRITE HERE: benefits of short links (easy to share, clean look,
-          fits in messages and social posts).
+          Long links are hard to read and often break when sent in messages.
+          A short link looks clean, fits easily in social media posts and is
+          simple to type or remember. It is especially useful when you share
+          links in chat apps, printed material or anywhere space is limited.
         </p>
 
         <h2>Frequently Asked Questions</h2>
+
+        <h3>Is {SITE.name} free to use?</h3>
+        <p>Yes. You can create short links for free without making an account.</p>
+
+        <h3>Do the short links expire?</h3>
         <p>
-          WRITE HERE: 4 to 5 questions and answers (is it free, do links
-          expire, is it safe, what links are not allowed).
+          Links stay active until they are removed. We may disable a link if it
+          breaks our Terms of Service.
+        </p>
+
+        <h3>Is it safe?</h3>
+        <p>
+          We do not allow malware, phishing or illegal content. You can report
+          a harmful link on our <a href="/report-abuse">Report Abuse</a> page.
+        </p>
+
+        <h3>Which links are not allowed?</h3>
+        <p>
+          Links to adult content, scams, malware, spam or anything illegal are
+          not allowed. See our <a href="/terms">Terms of Service</a> for the
+          full list.
         </p>
       </section>
     </>
   );
-  }
+}
