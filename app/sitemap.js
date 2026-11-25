@@ -4,8 +4,8 @@ import { POSTS } from '../lib/posts';
 
 function isDraft(post) {
   return post.content.some((item) => {
-    const text = typeof item === 'string' ? item : item.text;
-    return text?.includes('WRITE HERE');
+    const text = typeof item === 'string' ? item : item?.text;
+    return typeof text === 'string' && text.includes('WRITE HERE');
   });
 }
 
