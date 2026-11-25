@@ -21,17 +21,18 @@ export default function Blog() {
   return (
     <>
       <h1>Blog</h1>
+
       {posts.length === 0 && <p>Articles coming soon.</p>}
+
       {posts.map((post) => (
         <div className="card" key={post.slug}>
           <h2 style={{ marginTop: 0 }}>
-            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+            <Link href={`/blog/${post.slug}`}>
+              {post.title}
+            </Link>
           </h2>
+
           <p className="small">{post.date}</p>
           <p>{post.description}</p>
         </div>
       ))}
-    </>
-  );
-        }
-      
