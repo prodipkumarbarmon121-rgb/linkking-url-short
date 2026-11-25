@@ -1,9 +1,13 @@
+
 import { notFound } from 'next/navigation';
 import { SITE } from '../../../lib/site';
 import { POSTS, getPost } from '../../../lib/posts';
 
 function isDraft(post) {
-  return post.content.some((c) => c.includes('WRITE HERE'));
+  return post.content.some((item) => {
+    const text = typeof item === 'string' ? item : item.text;
+    return text?.includes('WRITE HERE');
+  });
 }
 
 function formatDate(date) {
@@ -93,10 +97,16 @@ export default function Post({ params }) {
         Author: <span>{authorName}</span> · {formattedDate}
       </p>
 
-      {post.content.map((para, i) => (
-        <p key={i}>{para}</p>
-      ))}
+      {post.content.map((item, i) => {
+        const isHeading = typeof item !== 'string' && item.type === 'heading';
+        const content = typeof item === 'string' ? item : item.text;
+
+        return isHeading ? (
+          <h2 key={i}>{content}</h2>
+        ) : (
+          <p key={i}>{content}</p>
+        );
+      })}
     </article>
   );
-      }
-        
+}
