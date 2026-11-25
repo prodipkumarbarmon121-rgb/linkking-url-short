@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { POSTS } from '../../lib/posts';
 
@@ -7,10 +8,15 @@ export const metadata = {
   alternates: { canonical: '/blog' },
 };
 
+function isDraft(post) {
+  return post.content.some((item) => {
+    const text = typeof item === 'string' ? item : item.text;
+    return text?.includes('WRITE HERE');
+  });
+}
+
 export default function Blog() {
-  const posts = POSTS.filter(
-    (p) => !p.content.some((c) => c.includes('WRITE HERE'))
-  );
+  const posts = POSTS.filter((p) => !isDraft(p));
 
   return (
     <>
@@ -27,4 +33,5 @@ export default function Blog() {
       ))}
     </>
   );
-}
+        }
+        
