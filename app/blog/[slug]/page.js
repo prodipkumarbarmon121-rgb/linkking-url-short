@@ -18,9 +18,13 @@ export function generateMetadata({ params }) {
 
   if (!post || isDraft(post)) return {};
 
+  const authorName = 'Prodip Kumar Barmon';
+
   return {
     title: post.title,
     description: post.description,
+    authors: [{ name: authorName }],
+    creator: authorName,
     alternates: {
       canonical: `/blog/${post.slug}`,
     },
@@ -30,7 +34,7 @@ export function generateMetadata({ params }) {
       description: post.description,
       url: `${SITE.url}/blog/${post.slug}`,
       publishedTime: post.date,
-      authors: ['Prodip Kumar Barmon'],
+      authors: [authorName],
     },
   };
 }
@@ -77,7 +81,7 @@ export default function Post({ params }) {
       <h1>{post.title}</h1>
 
       <p className="small">
-        লেখক: <span>{authorName}</span> · {post.date}
+        Author: <span>{authorName}</span> · {post.date}
       </p>
 
       {post.content.map((para, i) => (
