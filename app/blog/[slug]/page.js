@@ -1,10 +1,18 @@
-
 import { notFound } from 'next/navigation';
 import { SITE } from '../../../lib/site';
 import { POSTS, getPost } from '../../../lib/posts';
 
 function isDraft(post) {
   return post.content.some((c) => c.includes('WRITE HERE'));
+}
+
+function formatDate(date) {
+  return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
 }
 
 export function generateStaticParams() {
@@ -45,6 +53,7 @@ export default function Post({ params }) {
   if (!post || isDraft(post)) notFound();
 
   const authorName = 'Prodip Kumar Barmon';
+  const formattedDate = formatDate(post.date);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -81,7 +90,7 @@ export default function Post({ params }) {
       <h1>{post.title}</h1>
 
       <p className="small">
-        Author: <span>{authorName}</span> · {post.date}
+        Author: <span>{authorName}</span> · {formattedDate}
       </p>
 
       {post.content.map((para, i) => (
@@ -89,4 +98,5 @@ export default function Post({ params }) {
       ))}
     </article>
   );
-}
+      }
+        
