@@ -1,5 +1,13 @@
+
 import { SITE } from '../lib/site';
 import { POSTS } from '../lib/posts';
+
+function isDraft(post) {
+  return post.content.some((item) => {
+    const text = typeof item === 'string' ? item : item.text;
+    return text?.includes('WRITE HERE');
+  });
+}
 
 export default function sitemap() {
   const pages = [
@@ -16,9 +24,7 @@ export default function sitemap() {
     lastModified: new Date(),
   }));
 
-  const posts = POSTS.filter(
-    (p) => !p.content.some((c) => c.includes('WRITE HERE'))
-  ).map((p) => ({
+  const posts = POSTS.filter((p) => !isDraft(p)).map((p) => ({
     url: `${SITE.url}/blog/${p.slug}`,
     lastModified: new Date(p.date),
   }));
