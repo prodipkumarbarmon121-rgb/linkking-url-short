@@ -10,28 +10,28 @@ export const metadata = {
 
 function isDraft(post) {
   return post.content.some((item) => {
-    const text = typeof item === 'string' ? item : item.text;
-    return text?.includes('WRITE HERE');
+    const text = typeof item === 'string' ? item : item?.text;
+    return typeof text === 'string' && text.includes('WRITE HERE');
   });
 }
 
 export default function Blog() {
-  const posts = POSTS.filter((p) => !isDraft(p));
+  const posts = POSTS.filter((post) => !isDraft(post));
 
   return (
     <>
       <h1>Blog</h1>
       {posts.length === 0 && <p>Articles coming soon.</p>}
-      {posts.map((p) => (
-        <div className="card" key={p.slug}>
+      {posts.map((post) => (
+        <div className="card" key={post.slug}>
           <h2 style={{ marginTop: 0 }}>
-            <Link href={`/blog/${p.slug}`}>{p.title}</Link>
+            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
           </h2>
-          <p className="small">{p.date}</p>
-          <p>{p.description}</p>
+          <p className="small">{post.date}</p>
+          <p>{post.description}</p>
         </div>
       ))}
     </>
   );
         }
-        
+      
