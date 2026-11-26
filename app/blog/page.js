@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import { POSTS } from '../../lib/posts';
 
@@ -9,6 +8,7 @@ export const metadata = {
 };
 
 function isDraft(post) {
+  if (!Array.isArray(post?.content)) return false;
   return post.content.some((item) => {
     const text = typeof item === 'string' ? item : item?.text;
     return typeof text === 'string' && text.includes('WRITE HERE');
@@ -16,7 +16,9 @@ function isDraft(post) {
 }
 
 export default function Blog() {
-  const posts = POSTS.filter((post) => !isDraft(post));
+  const posts = Array.isArray(POSTS)
+    ? POSTS.filter((post) => post && !isDraft(post))
+    : [];
 
   return (
     <>
@@ -36,3 +38,7 @@ export default function Blog() {
           <p>{post.description}</p>
         </div>
       ))}
+    </>
+  );
+    }
+        
