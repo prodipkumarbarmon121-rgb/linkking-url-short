@@ -1,16 +1,30 @@
 import { SITE } from '../../lib/site';
 
+const description = `Terms of Service for using ${SITE.name}, including what links are not allowed and how reported links are handled.`;
+
 export const metadata = {
   title: 'Terms of Service',
-  description: `Terms of Service for using ${SITE.name}.`,
+  description,
   alternates: { canonical: '/terms' },
+  openGraph: {
+    type: 'website',
+    siteName: SITE.name,
+    title: `${SITE.name} Terms of Service`,
+    description,
+    url: '/terms',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SITE.name} Terms of Service`,
+    description,
+  },
 };
 
 export default function Terms() {
   return (
     <>
       <h1>Terms of Service</h1>
-      <p className="small">Last updated: November 22, 2026</p>
+      <p className="small">Last updated: November 27, 2026</p>
       <p>
         By using {SITE.name}, you agree to these terms. If you do not agree,
         please do not use the service.
@@ -36,8 +50,22 @@ export default function Terms() {
 
       <h2>Link Removal</h2>
       <p>
-        We may disable or delete any link at any time, without notice, if we
-        believe it breaks these terms or the law.
+        Links to known adult websites are blocked automatically. Other links
+        that break these terms are removed or disabled when we find them or
+        when they are reported to us. We may disable or delete any link at any
+        time, without notice, if we believe it breaks these terms or the law.
+        To report a link, please use the{' '}
+        <a href="/report-abuse">Report Abuse</a> page.
+      </p>
+
+      <h2>Copyright Complaints</h2>
+      <p>
+        If you believe a short link leads to content that infringes your
+        copyright, please tell us through the{' '}
+        <a href="/report-abuse">Report Abuse</a> page or by email at{' '}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Please include the
+        short link and a short description of the problem, and we will review
+        it. We do not host the content that short links lead to.
       </p>
 
       <h2>No Warranty</h2>
