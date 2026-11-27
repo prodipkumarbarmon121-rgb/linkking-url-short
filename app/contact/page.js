@@ -1,9 +1,23 @@
 import { SITE } from '../../lib/site';
 
+const description = `Get in touch with ${SITE.name} for support, feedback or business questions.`;
+
 export const metadata = {
   title: 'Contact Us',
-  description: `Contact the ${SITE.name} team for support, feedback or business questions.`,
+  description,
   alternates: { canonical: '/contact' },
+  openGraph: {
+    type: 'website',
+    siteName: SITE.name,
+    title: `Contact ${SITE.name}`,
+    description,
+    url: '/contact',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Contact ${SITE.name}`,
+    description,
+  },
 };
 
 export default function Contact() {
@@ -11,18 +25,18 @@ export default function Contact() {
     <>
       <h1>Contact Us</h1>
       <p>
-        Have a question, suggestion or problem? We would love to hear from you.
+        Have a question, suggestion or problem? I would love to hear from you.
       </p>
       <div className="card">
         <p>
           Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
         </p>
-        <p className="small">We usually reply within 2 to 3 business days.</p>
+        <p className="small">I usually reply within 2 to 3 business days.</p>
       </div>
       <p>
-        To report a harmful or abusive link, please use our{' '}
+        To report a harmful or abusive link, please use the{' '}
         <a href="/report-abuse">Report Abuse</a> page.
       </p>
     </>
   );
-}
+  }
