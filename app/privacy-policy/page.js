@@ -1,16 +1,30 @@
 import { SITE } from '../../lib/site';
 
+const description = `How ${SITE.name} collects, uses and protects your information.`;
+
 export const metadata = {
   title: 'Privacy Policy',
-  description: `How ${SITE.name} collects, uses and protects your information.`,
+  description,
   alternates: { canonical: '/privacy-policy' },
+  openGraph: {
+    type: 'website',
+    siteName: SITE.name,
+    title: `${SITE.name} Privacy Policy`,
+    description,
+    url: '/privacy-policy',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SITE.name} Privacy Policy`,
+    description,
+  },
 };
 
 export default function Privacy() {
   return (
     <>
       <h1>Privacy Policy</h1>
-      <p className="small">Last updated: November 22, 2026</p>
+      <p className="small">Last updated: November 27, 2026</p>
       <p>
         This Privacy Policy explains how {SITE.name} ({SITE.url}) collects,
         uses and protects information when you use our website and URL
@@ -40,9 +54,8 @@ export default function Privacy() {
       <h2>Cookies</h2>
       <p>
         Cookies are small files stored on your device. We and our partners may
-        use cookies to make the site work, understand how it is used, and show
-        advertising. You can control or delete cookies in your browser
-        settings.
+        use cookies to make the site work and to show advertising. You can
+        control or delete cookies in your browser settings.
       </p>
 
       <h2>Advertising</h2>
@@ -68,8 +81,7 @@ export default function Privacy() {
       <p>
         We use third-party services to run the website, including Vercel
         (hosting), Supabase (database), Cloudflare (bot protection) and Google
-        (advertising and analytics). These providers have their own privacy
-        policies.
+        (advertising). These providers have their own privacy policies.
       </p>
 
       <h2>Data Retention</h2>
@@ -97,4 +109,4 @@ export default function Privacy() {
       </p>
     </>
   );
-          }
+}
