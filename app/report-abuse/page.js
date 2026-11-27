@@ -1,9 +1,23 @@
 import { SITE } from '../../lib/site';
 
+const description = `Report a harmful, illegal or abusive link created with ${SITE.name}. Send the short link and the reason and it will be reviewed.`;
+
 export const metadata = {
   title: 'Report Abuse',
-  description: `Report a harmful, illegal or abusive link created with ${SITE.name}.`,
+  description,
   alternates: { canonical: '/report-abuse' },
+  openGraph: {
+    type: 'website',
+    siteName: SITE.name,
+    title: `Report Abuse | ${SITE.name}`,
+    description,
+    url: '/report-abuse',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Report Abuse | ${SITE.name}`,
+    description,
+  },
 };
 
 export default function ReportAbuse() {
@@ -11,8 +25,8 @@ export default function ReportAbuse() {
     <>
       <h1>Report Abuse</h1>
       <p>
-        We take abuse seriously. If you find a short link that leads to
-        harmful, illegal or deceptive content, please tell us so we can review
+        I take abuse seriously. If you find a short link that leads to
+        harmful, illegal or deceptive content, please tell me so I can review
         and remove it.
       </p>
 
@@ -26,14 +40,19 @@ export default function ReportAbuse() {
           the reason (phishing, malware, adult content, copyright, spam or
           other)
         </li>
-        <li>any extra details that help us check it</li>
+        <li>any extra details that help me check it</li>
       </ul>
+      <p>
+        For a copyright complaint, please also say what work you own and where
+        the original can be found.
+      </p>
 
       <h2>What Happens Next</h2>
       <p>
-        We review every report and disable links that break our{' '}
-        <a href="/terms">Terms of Service</a>.
+        I review every report. If a link breaks our{' '}
+        <a href="/terms">Terms of Service</a>, I disable it so that it no
+        longer redirects.
       </p>
     </>
   );
-    }
+  }
