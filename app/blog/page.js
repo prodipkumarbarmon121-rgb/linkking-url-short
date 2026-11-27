@@ -1,10 +1,25 @@
 import Link from 'next/link';
 import { POSTS } from '../../lib/posts';
+import { SITE } from '../../lib/site';
+
+const description = `Articles about ${SITE.name}, short links, sharing and online safety.`;
 
 export const metadata = {
   title: 'Blog',
-  description: 'Guides and tips about short links, sharing and online safety.',
+  description,
   alternates: { canonical: '/blog' },
+  openGraph: {
+    type: 'website',
+    siteName: SITE.name,
+    title: `${SITE.name} Blog`,
+    description,
+    url: '/blog',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SITE.name} Blog`,
+    description,
+  },
 };
 
 function isDraft(post) {
@@ -40,5 +55,4 @@ export default function Blog() {
       ))}
     </>
   );
-    }
-        
+              }
