@@ -1,0 +1,95 @@
+{
+  "slug": "what-is-a-url-shortener-and-how-does-it-work",
+  "title": "What Is a URL Shortener and How Does It Work?",
+  "description": "A plain-English guide to URL shorteners: what they are, how a short link finds the right page, and what to watch out for before you click one.",
+  "date": "2026-11-28",
+  "content": [
+    {
+      "type": "paragraph",
+      "text": "You have probably clicked hundreds of short links without thinking about it. Someone sends you something like cutly.bd/abc123 in a chat, you tap it, and a moment later you are on the right page. It feels like magic, but the idea behind it is simple. This guide explains what a URL shortener is, how it works behind the scenes, and what you should keep in mind when you use one."
+    },
+    {
+      "type": "heading",
+      "text": "What a URL Shortener Actually Is"
+    },
+    {
+      "type": "paragraph",
+      "text": "A URL shortener is a tool that takes a long web address and gives you a much shorter one that leads to the same place. Think of it like a nickname. A long address such as a product page with tracking codes, filters and page numbers can run to hundreds of characters. The short version might be only a dozen. Both open the same page, but the short one is far easier to read, type and share."
+    },
+    {
+      "type": "heading",
+      "text": "How It Works, Step by Step"
+    },
+    {
+      "type": "paragraph",
+      "text": "First, you paste your long link into the shortener and press the button. The service checks that it looks like a real web address, and on a service like Cutly it also runs a quick check to make sure you are a person and not a bot."
+    },
+    {
+      "type": "paragraph",
+      "text": "Second, the service creates a short code, a random string of letters and numbers, and saves it in a database next to your original link. You can imagine a simple two-column list. On the left is the code, on the right is the long address it belongs to. Then it hands you the new short link, which is just the website's name followed by that code."
+    },
+    {
+      "type": "paragraph",
+      "text": "Third, when someone opens the short link, their browser goes to the shortener first, not to your final page. The shortener reads the code at the end, finds it in the list, and replies with a redirect, which is a message that says, in effect, the page you want has moved, please go here. The browser follows that instruction automatically and loads the real page. All of this usually takes a fraction of a second, so most people never notice the extra step."
+    },
+    {
+      "type": "heading",
+      "text": "Why Short Links Are Useful"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common reason is simply tidiness. Long links look messy in an email, take up space in a social media post and sometimes get cut off or broken when they are pasted into a chat. A short link fits anywhere. It is also easier to read out loud or type by hand, for example when you want to share a link on a printed page or during a call."
+    },
+    {
+      "type": "paragraph",
+      "text": "Freelancers use them to send portfolios and work files to clients. Small business owners use them in messages and posts. Students use them to share study material. If you have ever copied a long address and watched it spill across three lines, you already know why people bother."
+    },
+    {
+      "type": "link",
+      "text": "Try shortening a link with Cutly",
+      "href": "/"
+    },
+    {
+      "type": "heading",
+      "text": "The Downsides Nobody Mentions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Short links are handy, but they are not perfect. The biggest drawback is that you cannot see where a short link leads just by looking at it. That is exactly why scammers like them. A harmless-looking short link can point to a fake login page or a harmful download."
+    },
+    {
+      "type": "paragraph",
+      "text": "There is also the question of how long the link will last. A short link depends on the service that created it. If that service shuts down or deletes the link, the short address stops working even though the original page is still fine. For anything truly important, such as a document you need to keep for years, it is safer to keep the original address somewhere as well."
+    },
+    {
+      "type": "heading",
+      "text": "How to Check a Short Link Before You Click"
+    },
+    {
+      "type": "paragraph",
+      "text": "A few simple habits go a long way. Be careful with short links from people or accounts you do not know. Be extra careful when the message creates pressure, for example by saying your account will be closed or that you have won something. If you are on a computer, you can paste the short link into a redirect checker tool, which shows the final destination without opening the page. And if a page asks for a password or payment details right after you click a short link, stop and think before you type anything."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you ever find a Cutly link that leads somewhere harmful, you can report it and I will review it."
+    },
+    {
+      "type": "link",
+      "text": "Report a harmful or suspicious link",
+      "href": "/report-abuse"
+    },
+    {
+      "type": "heading",
+      "text": "The Short Version"
+    },
+    {
+      "type": "paragraph",
+      "text": "A URL shortener swaps a long address for a short code, remembers which long address the code belongs to, and quietly sends visitors to the right place when they open it. It is a small trick that makes sharing links much easier, as long as you use it with a little common sense. If you would like to know why I built Cutly in the first place, I wrote about it here."
+    },
+    {
+      "type": "link",
+      "text": "Why I built Cutly",
+      "href": "/blog/why-i-built-cutly-free-url-shortener-for-freelancers"
+    }
+  ]
+}
