@@ -1,9 +1,23 @@
 import { SITE } from '../../lib/site';
 
+const description = `Learn about ${SITE.name}, a free URL shortener built by a freelancer in Bangladesh for freelancers and small businesses.`;
+
 export const metadata = {
   title: 'About Us',
-  description: `Learn about ${SITE.name}, a free URL shortener built by a freelancer in Bangladesh for freelancers and small businesses.`,
+  description,
   alternates: { canonical: '/about' },
+  openGraph: {
+    type: 'website',
+    siteName: SITE.name,
+    title: `About ${SITE.name}`,
+    description,
+    url: '/about',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `About ${SITE.name}`,
+    description,
+  },
 };
 
 export default function About() {
@@ -33,7 +47,7 @@ export default function About() {
         clients, sending links in chat apps and posting links on social media.
       </p>
 
-      <h2>How We Keep the Service Safe</h2>
+      <h2>How I Keep the Service Safe</h2>
       <p>
         A free service can be misused, so I added some protections from the
         start:
@@ -64,8 +78,8 @@ export default function About() {
       <p>
         Questions or feedback? Email me at{' '}
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. You can also visit
-        our <a href="/contact">Contact</a> page.
+        the <a href="/contact">Contact</a> page.
       </p>
     </>
   );
-  }
+}
