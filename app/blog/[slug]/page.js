@@ -1,7 +1,8 @@
-
 import { notFound } from 'next/navigation';
 import { SITE } from '../../../lib/site';
 import { POSTS, getPost } from '../../../lib/posts';
+
+const authorName = 'Prodip Kumar Barmon';
 
 function isDraft(post) {
   return post.content.some((item) => {
@@ -11,7 +12,7 @@ function isDraft(post) {
 }
 
 function formatDate(date) {
-  return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', {
+  return new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -30,8 +31,6 @@ export function generateMetadata({ params }) {
 
   if (!post || isDraft(post)) return {};
 
-  const authorName = 'Prodip Kumar Barmon';
-
   return {
     title: post.title,
     description: post.description,
@@ -42,11 +41,17 @@ export function generateMetadata({ params }) {
     },
     openGraph: {
       type: 'article',
+      siteName: SITE.name,
       title: post.title,
       description: post.description,
-      url: `${SITE.url}/blog/${post.slug}`,
+      url: `/blog/${post.slug}`,
       publishedTime: post.date,
       authors: [authorName],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
     },
   };
 }
@@ -56,7 +61,6 @@ export default function Post({ params }) {
 
   if (!post || isDraft(post)) notFound();
 
-  const authorName = 'Prodip Kumar Barmon';
   const formattedDate = formatDate(post.date);
 
   const jsonLd = {
@@ -98,15 +102,20 @@ export default function Post({ params }) {
       </p>
 
       {post.content.map((item, i) => {
-        const isHeading = typeof item !== 'string' && item.type === 'heading';
-        const content = typeof item === 'string' ? item : item.text;
+        if (typeof item === 'string') return <p key={i}>{item}</p>;
 
-        return isHeading ? (
-          <h2 key={i}>{content}</h2>
-        ) : (
-          <p key={i}>{content}</p>
-        );
+        if (item.type === 'heading') return <h2 key={i}>{item.text}</h2>;
+
+        if (item.type === 'link') {
+          return (
+            <p key={i}>
+              <a href={item.href}>{item.text}</a>
+            </p>
+          );
+        }
+
+        return <p key={i}>{item.text}</p>;
       })}
     </article>
   );
-}
+      }
