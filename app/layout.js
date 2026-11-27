@@ -13,19 +13,17 @@ export const metadata = {
   },
   description: SITE.description,
   applicationName: SITE.name,
-  keywords: SITE.keywords,
-  authors: [{ name: SITE.name }],
-  creator: SITE.name,
+  authors: [{ name: 'Prodip Kumar Barmon' }],
+  creator: 'Prodip Kumar Barmon',
   robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
     siteName: SITE.name,
     title: `${SITE.name} - ${SITE.tagline}`,
     description: SITE.description,
-    url: SITE.url,
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: `${SITE.name} - ${SITE.tagline}`,
     description: SITE.description,
   },
@@ -53,6 +51,7 @@ const jsonLd = {
       name: SITE.name,
       url: SITE.url,
       email: SITE.email,
+      founder: { '@type': 'Person', name: 'Prodip Kumar Barmon' },
     },
   ],
 };
@@ -102,4 +101,4 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
-  }
+}
