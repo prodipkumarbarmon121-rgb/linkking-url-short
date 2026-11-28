@@ -1,0 +1,106 @@
+{
+  "slug": "how-to-spot-a-dangerous-short-link-before-you-click",
+  "title": "How to Spot a Dangerous Short Link Before You Click",
+  "description": "A stranger sent me a short link in Facebook Messenger with a lottery prize as bait. It led to a fake Facebook login page. Here is what happened and how to avoid the same trap.",
+  "date": "2026-11-28",
+  "content": [
+    {
+      "type": "paragraph",
+      "text": "I once received a short link in Facebook Messenger from a stranger who tempted me with a lottery prize. The link opened a page that looked like the Facebook login screen. I am glad I stopped, and I want to share exactly what happened, because the same trick can catch anyone."
+    },
+    {
+      "type": "heading",
+      "text": "What Happened"
+    },
+    {
+      "type": "paragraph",
+      "text": "The message came from someone I did not know. They tried to tempt me with a lottery prize and sent me a short link to claim it. I did not know where the link led, but I opened it."
+    },
+    {
+      "type": "paragraph",
+      "text": "The short link took me to what looked like my Facebook login page. It asked for my phone number and my password. Something felt wrong. I had only tapped a short link from a stranger, and now a page was asking me for the keys to my account. I did not type anything. I closed the page and came out of it."
+    },
+    {
+      "type": "paragraph",
+      "text": "To be sure, I closed all the tabs in my browser and then opened Facebook again from the start. I was still logged in. That told me the login page I had been shown was not real. It was a phishing page, made to look like Facebook so that people would type in their details."
+    },
+    {
+      "type": "heading",
+      "text": "What I Learned From It"
+    },
+    {
+      "type": "paragraph",
+      "text": "The first lesson is that a message from a stranger offering a lottery prize is a warning sign in itself. A genuine prize rarely arrives as a surprise message from a stranger with a link, and the bait is there to make you click and hand over your details."
+    },
+    {
+      "type": "paragraph",
+      "text": "The second lesson is that a fake page can look very convincing, so looks alone are not enough to trust it. What protected me was a simple habit: I did not enter my details on a page that a link had brought me to."
+    },
+    {
+      "type": "paragraph",
+      "text": "The third lesson is how I checked. Closing everything and opening the real site myself showed me the truth, because my real account was fine and already logged in. If a link sends you to a login page, you can do the same. Close it, open the app or type the website address yourself, and see what happens there."
+    },
+    {
+      "type": "paragraph",
+      "text": "One more thing to keep in mind: a real website can sometimes ask you to log in again, for example when a session has expired. So a login page on its own does not prove a scam. That is why the safe rule is not to enter your password on a page you reached through a link in a message, even if it looks right."
+    },
+    {
+      "type": "heading",
+      "text": "Why Short Links Make This Harder"
+    },
+    {
+      "type": "paragraph",
+      "text": "The link I received was a short link, so I had no way to see where it led before I tapped it. A normal long link shows at least part of the address, and sometimes that is enough to see that something is off. A short link hides the destination completely, and you only find out where you are going after you tap. That is why you should be extra careful with short links that arrive in messages, comments and posts, especially from people you do not know."
+    },
+    {
+      "type": "heading",
+      "text": "A Simple Checklist Before You Click"
+    },
+    {
+      "type": "paragraph",
+      "text": "Think about who sent it and whether you were expecting it. Be suspicious if the message is urgent or too good to be true, for example if it says your account will be closed or that you have won a prize. If you are on a computer, a redirect checker tool can show you the final address without opening the page."
+    },
+    {
+      "type": "paragraph",
+      "text": "After you click, look at the address bar. Facebook's real login page is on facebook.com. A page on any other address that asks for your Facebook password is fake. And never enter a password, a one-time code or payment details on a page you reached by tapping a link in a message."
+    },
+    {
+      "type": "heading",
+      "text": "What to Do If You Already Entered Your Password"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you typed your password into a page like this, act quickly. Change that password right away, using the real website or app, and never reuse it on other accounts. Log out of all other devices and turn on two-step verification. If the link came from a friend's account, let your friend know that their account may have been taken over, so they can secure it."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can also report the message to Facebook so that the link can be looked at, and so that fewer people fall for it."
+    },
+    {
+      "type": "heading",
+      "text": "My Advice"
+    },
+    {
+      "type": "paragraph",
+      "text": "If something like this ever happens to you, stay careful and do not give any personal information. Not your phone number, not your password, not a code you receive by SMS. If you are not sure, check again and again if you need to. Close the page, open the real site yourself, and look at your account there. Checking twice costs you a minute. Losing an account can cost you much more."
+    },
+    {
+      "type": "heading",
+      "text": "What Cutly Does and Does Not Do"
+    },
+    {
+      "type": "paragraph",
+      "text": "I built some protections into Cutly. Links to known adult websites are blocked, a verification check helps stop bots, and anyone can report a harmful link so that I can review it and disable it. But I cannot check every page that every short link leads to, so please keep using your own judgement. If you come across a Cutly link that looks dangerous, tell me."
+    },
+    {
+      "type": "link",
+      "text": "Report a harmful or suspicious link",
+      "href": "/report-abuse"
+    },
+    {
+      "type": "link",
+      "text": "Back to: What is a URL shortener and how does it work?",
+      "href": "/blog/what-is-a-url-shortener-and-how-does-it-work"
+    }
+  ]
+}
