@@ -28,7 +28,9 @@ export default function Privacy() {
       <p>
         This Privacy Policy explains how {SITE.name} ({SITE.url}) collects,
         uses and protects information when you use our website and URL
-        shortening service.
+        shortening service. Your use of the service is also covered by our{' '}
+        <a href="/terms">Terms of Service</a> and{' '}
+        <a href="/disclaimer">Disclaimer</a>.
       </p>
 
       <h2>Information We Collect</h2>
@@ -87,7 +89,9 @@ export default function Privacy() {
       <h2>Data Retention</h2>
       <p>
         Shortened links are stored until they are removed by us or on request.
-        You can ask us to delete a link by contacting us.
+        You can ask us to delete a link through the{' '}
+        <a href="/contact">Contact</a> page. To report a harmful link, please
+        use the <a href="/report-abuse">Report Abuse</a> page.
       </p>
 
       <h2>Children&apos;s Privacy</h2>
@@ -105,7 +109,14 @@ export default function Privacy() {
       <h2>Contact</h2>
       <p>
         For privacy questions, email{' '}
-        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or visit the{' '}
+        <a href="/contact">Contact</a> page.
+      </p>
+
+      <p className="small">
+        Related pages: <a href="/terms">Terms of Service</a> ·{' '}
+        <a href="/disclaimer">Disclaimer</a> ·{' '}
+        <a href="/report-abuse">Report Abuse</a> · <a href="/blog">Blog</a>
       </p>
     </>
   );
